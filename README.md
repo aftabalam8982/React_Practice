@@ -72,7 +72,7 @@
 - We can consume using the value 2 way,
 
 1.  Using callback function.
-    <div>{(value)=><h1>{value}</h1>}</div>
+    <div>{(value)=><h4>{value}</h4>}</div>
 2.  Using 'useContext()' hooks.
     const value = useContext(context).
 
