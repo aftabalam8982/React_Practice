@@ -1,4 +1,4 @@
-# React Topics
+# <h1>React Note</h1>
 
 # Data sharing
 
@@ -14,6 +14,8 @@
 - useState
 - Lifting state Up
 - useReducer
+- Redux
+- React-Redux
 
 # Performance Optimization
 
@@ -86,4 +88,94 @@
   2. function - to manage state.
      const [state, setState] = useState();
 
-# Lifting State Up
+# Redux and React-Redux
+
+- Redux is a library which hold and manage application state.
+
+- REDUX ARCHITECTURE:
+
+- App --> Action Creator -->(thunk or saga) --> Reducer --> Store
+
+- ACTION CREATOR: A function which return javascript plain object which contain properties type and payload called Action Creator.
+  exp:
+
+  const action = () => {
+  return{
+  type:'increment',
+  payload: data // when required
+  }
+  }
+
+- THUNK AND SAGA: It is a middleware which allow Action creator to to return a function instead of object to perform async task, and receive 'dispatch' and 'gateState' as parameter in return function.
+  exp:
+
+      const action = () => {
+
+  return (dispatch, gateState) => {
+  // here we can perform async task and dispatch action one or more times.
+  }
+  }
+
+- REDUCER : Reducer is pure function which get initial state and action as parameter and then perform task or manage state according to action and return updated state.
+  exp:
+
+  const reducer = (state = initialState, action) => {
+  switch (action.type) {
+  case "increment":
+  return { ...state, count: state.count + 1 };
+  case "decrement":
+  return { ...state, count: state.count - 1 };
+  case "reset":
+  return initialState;
+  default:
+  return state;
+  }
+  };
+
+- STORE : Store is the central piece of Redux architecture is the store, which hold application store.
+  exp:
+
+  const store = createStore(reducer)
+
+- createStore is function which take reducer function and return a object which contain,
+
+1.  dispatch function
+2.  getState function
+3.  subscribe function
+4.  replaceReducer function
+
+# React-Redux
+
+- React-Redux is a library which binds react with redux.
+- It helps to manage integration between Redux and React.
+- Making it easer to connect Redux state and actions to React components.
+
+- CORE PRINCIPLES:
+
+Provider Component --> Connect Function
+
+- PROVIDER COMPONENT: It is a component which use to wrap root of React component and provide Redux Store as Props of the provider component.
+- And then able to access Redux store and dispatch action through props injected by 'connect' function.
+  exp:
+
+  <Provider store = {store}><App/></Provider>
+
+- CONNECT FUNCTION: It is used to connect React Component to Redux Store.
+- It create the higher order component(HOC) and wraps the original component, and inject props containing state and dispatch function form the Redux store.
+
+const Counter = () => {
+return (
+
+<div>{counter}</div>
+
+    )
+
+}
+
+export const Counter = connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+- mapStateToProps: It is function which accept 'current state' as parameter and return props.
+
+- It's also provide hooks,
+  1. useSelector() // it's take callback function as a argument and receive state as a parameter in callback.
+  2. useDispatch() // return a function and take argument action.
