@@ -1,7 +1,10 @@
 import { reducer } from "./reducer";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import { thunk } from "redux-thunk";
 
-export const store = createStore(reducer);
+const middlewareEnhancer = applyMiddleware(thunk);
+
+export const store = createStore(reducer, middlewareEnhancer);
 store.subscribe(() => {
   console.log("state:", store.getState());
 });
