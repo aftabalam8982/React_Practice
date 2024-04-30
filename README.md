@@ -179,3 +179,28 @@ export const Counter = connect(mapStateToProps, mapDispatchToProps)(Counter);
 - It's also provide hooks,
   1. useSelector() // it's take callback function as a argument and receive state as a parameter in callback.
   2. useDispatch() // return a function and take argument action.
+
+# Redux-Thunk
+
+- It is a library which helps us to return a action as 'function' instead of plain object.
+- It's also help us to make a async task.
+- once we return a callback function it's send arguments 'dispatch' and 'gateState' accept as parameter.
+- exp
+- Action:
+  export const fetchUserAction = () => {
+
+return async (dispatch, getState) => {
+const res = await fetch("https://jsonplaceholder.typicode.com/users");
+const userData = await res.json();
+console.log(userData);
+dispatch({ type: "users", payload: userData });
+};
+};
+
+- Store:
+
+  const middlewareEnhancer = applyMiddleware(thunk);
+
+  export const store = createStore(reducer, middlewareEnhancer);
+
+- Then call the fetchUserAction from any app component as per requirement.

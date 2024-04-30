@@ -1,6 +1,10 @@
 import React from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
-import { decrementAction, incrementAction } from "../redux-store/action";
+import {
+  decrementAction,
+  fetchUser,
+  incrementAction,
+} from "../redux-store/action";
 
 const Counter = () => {
   //{ count, increment }
@@ -12,6 +16,7 @@ const Counter = () => {
       <h2>Counter: {count}</h2>
       <button onClick={() => dispatch(incrementAction(2))}>Increment</button>
       <button onClick={() => dispatch(decrementAction(1))}>Increment</button>
+      <button onClick={() => dispatch(fetchUser())}>Fetch User</button>
       {/* <button onClick={() => increment(incrementAction(2))}>Increment</button>
       <button onClick={() => increment(decrementAction(1))}>Increment</button> */}
     </>
