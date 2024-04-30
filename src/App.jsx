@@ -7,6 +7,7 @@ import Parent2 from "./hoc/Parent2";
 import Parent from "./renderProps/Parent";
 import { reducer } from "./redux-store/reducer";
 import Counter from "./counter/Counter";
+import Counter2 from "./counter/Counter2";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       {/* <Parent3 /> */}
       {/* <CounterComponent /> */}
       <Counter />
+      <Counter2 />
     </>
   );
 }

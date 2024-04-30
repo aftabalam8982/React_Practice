@@ -24,6 +24,7 @@ const Counter = () => {
 };
 export default Counter;
 
+// This is traditional method but now we mostly use hooks provided by react-redux library.
 /*
 const mapStateToProps = (currentState) => {
   return {

@@ -204,3 +204,33 @@ dispatch({ type: "users", payload: userData });
   export const store = createStore(reducer, middlewareEnhancer);
 
 - Then call the fetchUserAction from any app component as per requirement.
+
+# useReducer
+
+- useReducer is a hook that use to manage state similar to 'useState'.
+- useReducer use to manage complex state or multi sub-value state.
+  const initialState = {
+  count:0
+  }
+  const [count, dispatch] = useReducer(reducer,initialState);
+
+- useReducer take arguments 'callback or reducer function' and 'initialState'.
+- useReducer return array of length 2.
+
+1. state,
+2. dispatch function
+
+- In callback function receive 'state' and 'action' as parameter.
+  exp:
+  const reducer = (state,action) => {
+  switch(action.type){
+  case 'increment':
+  return {...state, count:state.count+2}
+  case 'decrement':
+  return {...state, count:state.count-2}
+  case 'reset':
+  return initialState
+  default:
+  return state;
+  }
+  }
