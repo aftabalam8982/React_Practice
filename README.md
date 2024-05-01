@@ -234,3 +234,25 @@ dispatch({ type: "users", payload: userData });
   return state;
   }
   }
+
+# Lifting Up State
+
+- it is concept where manage state in parent component.
+- Allow multiple component to share and update same state.
+- instead of storing state separately, we just moved up to parent component and share state by props.
+  exp
+
+// Parent component
+const ParentComponent = () => {
+// Define state and state-updating function
+const [count, setCount] = useState(0);
+
+return (
+<div>
+<h2>Count: {count}</h2>
+{/_ Child components _/}
+<ChildComponent count={count} setCount={setCount} />
+<AnotherChildComponent count={count} />
+</div>
+);
+};
