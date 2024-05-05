@@ -14,7 +14,7 @@ const counterSlice = createSlice({
     },
   },
 });
-console.log(counterSlice);
+
 export const { reducer, actions } = counterSlice;
 
 export const { increment, decrement } = actions;
