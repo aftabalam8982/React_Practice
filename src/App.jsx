@@ -8,6 +8,7 @@ import Parent from "./renderProps/Parent";
 import { reducer } from "./redux-store/reducer";
 import Counter from "./counter/Counter";
 import Counter2 from "./counter/Counter2";
+import Counter3 from "./counter/Counter3";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       {/* <CounterComponent /> */}
       <Counter />
       <Counter2 />
+      <Counter3 />
     </>
   );
 }
