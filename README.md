@@ -248,6 +248,7 @@ const ParentComponent = () => {
 const [count, setCount] = useState(0);
 
 return (
+
 <div>
 <h2>Count: {count}</h2>
 {/_ Child components _/}
@@ -256,3 +257,70 @@ return (
 </div>
 );
 };
+
+# Redux-Toolkit
+
+- It's come to simplify redux setup.
+- Immutability helper: it uses 'immer' library to write reducer logic more concise and readable manner.
+- It is almost same as redux except action and reducer.
+- we don't have to create 'action creator' and 'reducer' manually.
+
+  const userSlice = createSlice({name, initialState, reducers, extraReducers for middleware})
+
+  return userSlice = {action, reducer, getSelectors, caseReducers, getInitialState, ...}
+
+  exp of simple state management:
+  const counterSlice = createSlice({
+  name: "counter",
+  initialState: {
+  value: 0,
+  },
+  reducers: {
+  increment(state) {
+  state.value += 1;
+  },
+  decrement(state) {
+  state.value -= 1;
+  },
+  },
+  });
+
+export const { reducer, actions } = counterSlice;
+
+- createSlice take argument a object and return object which contain 'action' 'reducer' and getInitialState etc...
+
+exp of async operation by redux toolkit, redux toolkit gives us redux middleware by defaults.
+
+exp: const userSlice = createSlice({
+name: "user",
+initialState: {
+isData: null,
+isLoading: false,
+error: null,
+},
+reducers: {},
+extraReducers: (builder) => {
+builder
+.addCase(fetchUserData.pending, (state) => {
+state.isLoading = true;
+state.error = null;
+})
+.addCase(fetchUserData.fulfilled, (state, action) => {
+state.isData = action.payload;
+state.isLoading = false;
+})
+.addCase(fetchUserData.rejected, (state) => {
+state.error = true;
+});
+},
+});
+console.log(userSlice);
+export default userSlice.reducer;
+
+exp of store: const store = configureStore({
+reducer: {
+counter: reducer,
+user: userReducer,
+},
+});
+export default store;
