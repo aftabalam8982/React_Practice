@@ -325,6 +325,29 @@ user: userReducer,
 });
 export default store;
 
+# Performance Optimization
+
+1. useMemo Hook:
+
+- useMemo is a hooks provided by React.
+- it is use cache the value and return the value.
+- it takes two argument first callback function and second dependencies
+- according to the dependencies the useMemo call.
+- you can see the example memo-counter folder.
+
+2. React memo :
+
+- memo is the provided by React.
+- it is use to prevent un-necessary render of the component.
+- see the example in 'memo-folder'.
+
+3. useCallback Hook:
+
+- useCallback is hook provided by react.
+- it cache the function an prevent re-creation of function.
+- it takes the second argument dependency for re-creation of function.
+- see the example in memo-folder.
+
 # REACT-ROUTER-DOM
 
 - it's fully feature client and server side routing library for react.

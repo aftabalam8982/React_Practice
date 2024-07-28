@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const Render = ({ children }) => {
+const Render = ({ render }) => {
   const [name, setName] = useState("Aftab alam");
-  return <div>{children(name)}</div>;
+  return <div>{render(name)}</div>;
 };
 
 export default Render;
