@@ -324,3 +324,146 @@ user: userReducer,
 },
 });
 export default store;
+
+# Performance Optimization
+
+1. useMemo Hook:
+
+- useMemo is a hooks provided by React.
+- it is use cache the value and return the value.
+- it takes two argument first callback function and second dependencies
+- according to the dependencies the useMemo call.
+- you can see the example memo-counter folder.
+
+2. React memo :
+
+- memo is the provided by React.
+- it is use to prevent un-necessary render of the component.
+- see the example in 'memo-folder'.
+
+3. useCallback Hook:
+
+- useCallback is hook provided by react.
+- it cache the function an prevent re-creation of function.
+- it takes the second argument dependency for re-creation of function.
+- see the example in memo-folder.
+
+# REACT-ROUTER-DOM
+
+- it's fully feature client and server side routing library for react.
+
+  1. Configuring Routes:
+
+  <BrowserRouter><App/></BrowserRouter>
+
+    <Routes>
+      <Route path="/" element={<Directory/>}></Route>
+      <Route path="home" element={<Home/>}></Route>
+      <Route path="about" element={<About/>}></Route>
+    </Routes>
+
+2.  Link:
+
+    - Link directly add anchor tag in real dom.
+
+        <Nav>
+        <Link to="home">Home</Link>
+        <Link to="about">About</Link>
+        </Nav>
+
+    - to: This is the most important prop of the Link component. It specifies the target URL to navigate to when the link is clicked. It can be a string representing the path or an object representing the location.
+
+      <Link to="/about">About</Link>
+
+    - replace: When set to true, this prop replaces the current entry in the history stack with the new URL instead of adding a new entry. This can be useful for preventing the user from going back to the previous page after navigating.
+    - when we click back button of browser, it'll will not go to the previous page, it's move to the first navigate.
+
+      <Link to="/about" replace={true}>About</Link>
+
+    - state: This prop allows you to pass state data along with the URL. The state data will be available in the location object when the new route is rendered.
+
+           <Link to="/about" state={{ from: "homepage" }}>About</Link>
+
+      import { useLocation } from 'react-router-dom';
+
+function About() {
+const location = useLocation();
+const { from } = location.state;
+
+return (
+
+<div>
+<h2>About Page</h2>
+<p>Coming from: {from}</p>       // it'll provide you state 
+</div>
+);
+}
+
+- className: This prop allows you to specify CSS classes to apply to the link. This can be useful for styling the link differently based on its context.
+
+     <Link to="/about" className="custom-link">About</Link>
+
+- onClick: This prop allows you to specify a function to be called when the link is clicked. You can use this to perform additional actions before navigating, such as logging or analytics tracking.
+
+   <Link to="/about" onClick={() => console.log("Link clicked")}>About</Link>
+
+3. Active Links:
+
+- if we want to add style if link is active.
+- import NavLink instead of Link.
+- the NavLink provide active class by default there we can grab it and style it.
+- if we are using any css library then we can add prop.
+
+  const navLinkStyles=({isActive})=>{
+  return {
+  font : isActive?'bold':'normal',
+  background-color: isActive?'grey': ''
+  }
+  }
+
+  <NavLink style={navLinkStyles}>About</NavLink>
+
+- using stylesheet:
+  a.active{
+  font:bold;
+  background-color:grey;
+  }
+
+4. Navigating Programmatically:
+
+- React Router provide us a hook (useNavigate()) to navigate to any page .
+- useNavigate hook return a function.
+- we can call the function with path argument where we want to navigate.
+
+  const navigate = useNavigate()
+
+  <button onClick={()=>navigate('home')}>Go to Home</button>
+
+- we navigate to previous page using useNavigate hook.
+- only pass -1 as argument.
+  <button onClick={()=>navigate(-1)}>Go to Home</button>
+
+5. No Match Found:
+
+- if routes does not match found then we need to add component with message 'Routes not found'
+- with path '\*'.
+
+  <Routes>
+    <Route path="/" element={<Directory/>}></Route>
+    <Route path="home" element={<Home/>}></Route>
+    <Route path="about" element={<About/>}></Route>
+    <Route path="*" element={<PageNotFound/>}></Route>
+  </Routes>
+
+6. Nested Routes:
+
+<Routes>
+    <Route path="/" element={<Directory/>}></Route>
+    <Route path="home" element={<Home/>}></Route>
+    <Route path="about" element={<About/>}></Route>
+    <Route path="about" element={<About/>}>
+       <Route path="product-list" element={< ProductList/>}>
+       <Route path="new" element={< NewProduct/>}>
+    </Route>
+    <Route path="*" element={<PageNotFound/>}></Route>
+  </Routes>

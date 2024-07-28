@@ -9,6 +9,7 @@ import { reducer } from "./redux-store/reducer";
 import Counter from "./counter/Counter";
 import Counter2 from "./counter/Counter2";
 import Counter3 from "./counter/Counter3";
+import Parent4 from "./memo-counter/Parent4";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
       <ComponentD /> */}
       {/* <Parent3 /> */}
       {/* <CounterComponent /> */}
-      <Counter />
+      {/* <Counter />
       <Counter2 />
-      <Counter3 />
+      <Counter3 /> */}
+      <Parent4 />
     </>
   );
 }
